@@ -58,8 +58,8 @@ By the final review, this README should clearly show:
 
 | Name | Primary Role | Secondary Role | Strengths Brought to the Project |
 |---|---|---|---|
-| `Akshita Maity` | `[Electronics / Coding / App / Fabrication / Mechanics]` | `[Role]` | `[Write here]` |
-| `Sirjan Chahal` | `[Electronics / Coding / App / Fabrication / Mechanics]` | `[Role]` | `[Write here]` |
+| `Akshita Maity` | `[Electronics / App / Fabrication / ]` | `[App]` | `[ Wiring / hardware and material handling skill, ideation ]` |
+| `Sirjan Chahal` | `[Electronics / Coding / ]` | `[Fabrication]` | `[ Coding and logic ideation, Wiring / hardware]` |
 
 ## 1.3 Project Title
 `Sonic Vault'
@@ -807,16 +807,19 @@ So while the hardware is stable now, keeping everything perfectly in sync under 
 
 | Date | Problem Found | Type | What You Tried | Result | Next Action |
 |---|---|---|---|---|---|
-| `[Date]` | `[Describe issue]` | `[Technical / Mechanical / UI / Gameplay]` | `[What you did]` | `[Worked / Partly / Failed]` | `[Next step]` |
+| `[week 2]` | `[150-LED NeoPixel strip flickering, wrong colours]` | `[Technical]` | `[Shortened wire, added capacitor, added resistor]` | `[Partially improved but still unstable at far end of strip]` | `[Abandoned — switched to 10-LED short strip]` |
+| `[week 2]` | `[NeoPixel drawing too much current, ESP32 browning out]` | `[Technical]` | `[Powered NeoPixel from USB directly (bypassing 3.3V)]` | `[Improved. Then added XL4015 for clean 5V — fully resolved]` | `[-]` |
+| `[week 3]` | `[Week 3	Baseline drifting too slowly after loud sounds]` | `[technical]` | `[Changed baseline IIR from 0.95/0.05 to 0.9/0.1]` | `[Faster recovery without introducing noise]` | `[-]` |
+| `[week 3]` | `[display2 showing bars upside down relative to display1]` | `[technical]` | `[Flipped pixel Y-axis on display2 (display2.pixel(x, y, 1) vs 7-y)]` | `[Created satisfying symmetric waveform effect]` | `[Kept as feature]` |
+| `[Date]` | `[Describe issue]` | `[Type]` | `[What you did]` | `[Result]` | `[Next step]` |
 | `[Date]` | `[Describe issue]` | `[Type]` | `[What you did]` | `[Result]` | `[Next step]` |
 
 ## 16.4 Playtesting Notes
 
 | Tester | What They Did | What Confused Them | What They Enjoyed | What You Will Change |
 |---|---|---|---|---|
-| `[Peer / friend / classmate]` | `[Observation]` | `[Observation]` | `[Observation]` | `[Action]` |
-| `[Peer / friend / classmate]` | `[Observation]` | `[Observation]` | `[Observation]` | `[Action]` |
-
+| `[classmate]` | `[Noticed the Led Matrix Display reacting to sound, tried whistling and clapping.]` | `[Did not notice the joystick for mode switching at first]` | `[Liked the reaction to sound and display; also liked the neopixel breathing colours]` | `[Added a small label near the joystick: "← MODE →"]` |
+| `[classmate]` | `[Used joystick immediately after seeing it]` | `[Unsure what the three modes were changing visually]` | `[Liked treble mode — fast jittery response felt exciting]` | `[Liked treble mode — fast jittery response felt exciting]` |
 ---
 
 # 17. Build Documentation
