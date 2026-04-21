@@ -58,8 +58,8 @@ By the final review, this README should clearly show:
 
 | Name | Primary Role | Secondary Role | Strengths Brought to the Project |
 |---|---|---|---|
-| `Akshita Maity` | `[Electronics / App / Fabrication / ]` | `[App]` | `[ Wiring / hardware and material handling skill, ideation ]` |
-| `Sirjan Chahal` | `[Electronics / Coding / ]` | `[Fabrication]` | `[ Coding and logic ideation, Wiring / hardware]` |
+| `Akshita Maity` | `[Electronics / App / Fabrication / ]` | `[Code]` | `[ Wiring / hardware, material handling skill, Game logic ]` |
+| `Sirjan Chahal` | `[Electronics / Coding / ]` | `[Fabrication]` | `[ Coding and logic, Wiring / hardware, Backend]` |
 
 ## 1.3 Project Title
 `Sonic Vault'
