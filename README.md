@@ -574,7 +574,7 @@ The design intent was to make song selection feel like a deliberate, physical ac
 
 | Feature | Purpose |
 |---|---|
-| `Genre panel (left) — 8 genres including Synthwave, Lo-Fi, Techno, Rock, Ambient, Jazz, Hip-Hop` | `[Filter the track library by style]` |
+| `Genre panel (left) — 7 genres ` | `[Filter the track library by style]` |
 | `[Song Library (centre) — full scrollable track list]` | `[Shows title, artist, genre, duration; yellow highlight follows joystick]` |
 | `[Queue panel (right)]` | `[Build and manage a playlist; Normal / Shuffle / Repeat / Loop Q modes]` |
 | `[Player bar (bottom) — Prev / Play / Stop / Next / Volume]` | `[Full playback control, all accessible from joystick in PLAYER focus zone]` |
@@ -690,7 +690,7 @@ Include:
 - how documentation will be maintained.
 
 **Response:**  
-`[Akshita led all fabrication model building and Interface software and backend connection to input components ( HTML/JS, Illustrator design), led hardware assembly and power design. Sirjan led all coding for the led display. Decisions were made jointly at the start of each session. If one track was blocked, the other member provided support. Documentation was updated by whoever completed a task. No major design change was made without agreement from both.]`
+`[Akshita led all fabrication model building and Interface software and backend connection to input components ( HTML/JS, Illustrator design), led hardware assembly and power design. Sirjan led all coding for the led display and primarily frabication, power design. Decisions were made jointly at the start of each session. If one track was blocked, the other member provided support. Documentation was updated by whoever completed a task. No major design change was made without agreement from both.]`
 
 ## 13.2 Task Breakdown
 
@@ -786,7 +786,7 @@ What is the single biggest uncertainty in your project at this stage?
 **Response:**  
 `[
 The biggest thing we're still unsure about is whether the ESP32 can keep up with everything happening at once. Even though the buck regulator fixed our power issues, we don't fully know yet if the board can handle running complex LED animations, reading the audio input, and responding to joystick controls — all at the same time, without any hiccups.
-The concern is that if the processor gets overloaded, the LED matrix might start flickering or lag slightly behind the actual sound. And if the joystick inputs — like adjusting volume or pausing — don't register instantly, the whole experience falls apart. The Sonic Vault is supposed to feel like one smooth, responsive instrument. The moment there's a noticeable delay between what you do and what you see or hear, it stops feeling immersive and just feels broken.
+The concern is that if the processor gets overloaded, the LED matrix might start flickering or lag slightly behind the actual sound. And if the joystick inputs — like adjusting volume or pausing don't register instantly, the whole experience falls apart. The Sonic Vault is supposed to feel like one smooth, responsive instrument. The moment there's a noticeable delay between what you do and what you see or hear, it stops feeling immersive and just feels broken.
 So while the hardware is stable now, keeping everything perfectly in sync under full load is the one thing we haven't been able to fully test or guarantee yet.]`
 
 ---
@@ -915,7 +915,7 @@ FINAL
 Describe the final version of your project.
 
 **Response:**  
-`[Sonic Vault is a two-phase tabletop installation. A physical joystick connected via USB to a laptop running Chrome navigates a purpose-built dark-themed music library (Sonic Vault HTML/JS) — browsing genres, scrolling tracks, building a queue, and controlling playback entirely without keyboard or mouse. When a track plays, the audio from the speakers is captured by a MAX4466 microphone connected to an ESP32, which drives a 32×8 MAX7219 LED matrix with real-time animated bar columns mirrored symmetrically across two daisy-chained modules. A 10-LED NeoPixel strip breathes in the active mode colour. The joystick cycles between Red (Bass), Orange (Full Range), and Yellow (Treble) frequency modes. The components needign a high volatge supply run from an XL4015 buck regulator. The UI was designed in Adobe Illustrator and wireframed collaboratively with Claude.]`
+`[Sonic Vault is a two-phase tabletop installation. A physical joystick connected via USB to a laptop running Chrome navigates a purpose-built dark-themed music library (Sonic Vault HTML/JS) — browsing genres, scrolling tracks, building a queue, and controlling playback entirely without keyboard or mouse. When a track plays, the audio from the speakers is captured by a MAX4466 microphone connected to an ESP32, which drives a 32×8 MAX7219 LED matrix with real-time animated bar columns mirrored symmetrically across two daisy-chained modules. A 10-LED NeoPixel strip breathes in the active mode colour. The joystick cycles between Red (Bass), Orange (Full Range), and Yellow (Treble) frequency modes. The components needign a high volatge supply run from an XL4015 buck regulator. The UI was designed in Adobe Illustrator and wireframed collaboratively with LLM.]`
 
 ## 18.2 What Works Well
 - `The experience of choosing music with the joystick and watching it visualised creates genuine authorship over the light show.
