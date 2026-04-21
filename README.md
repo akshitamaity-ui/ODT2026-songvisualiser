@@ -58,7 +58,7 @@ By the final review, this README should clearly show:
 
 | Name | Primary Role | Secondary Role | Strengths Brought to the Project |
 |---|---|---|---|
-| `Akshita Maity` | `[Electronics / App / Fabrication / ]` | `[Code]` | `[ Wiring / hardware, material handling skill, Game logic ]` |
+| `Akshita Maity` | `[Electronics / App / Fabrication / ]` | `[Code]` | `[ Wiring / hardware, material handling skill, Game logic (UI) ]` |
 | `Sirjan Chahal` | `[Electronics / Coding / ]` | `[Fabrication]` | `[ Coding and logic, Wiring / hardware, Backend]` |
 
 ## 1.3 Project Title
