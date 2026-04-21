@@ -194,11 +194,11 @@ Tilt up/down to scroll within any panel.
 ## 5.1 Definition of “Playable”
 Your project will be considered complete only if these conditions are met.
 
-- [ ] `[The joystick navigates genre list, song library, queue, and player controls via WebSerial without requiring keyboard or mouse]`
-- [ ] `[Selecting a song and pressing SELECT begins playback and the LED matrix visualiser pick up the frequency and get triggered]`
-- [ ] `[The LED matrix produces a real-time animated waveform that visually reacts to the music]`
-- [ ] `[Joystick mode switching produces perceptibly different column behaviour for Bass, Full, and Treble]`
-- [ ] `[The system runs continuously without freezing, dropping serial connection, or requiring a restart]`
+- [x] `[The joystick navigates genre list, song library, queue, and player controls via WebSerial without requiring keyboard or mouse]`
+- [x] `[Selecting a song and pressing SELECT begins playback and the LED matrix visualiser pick up the frequency and get triggered]`
+- [x] `[The LED matrix produces a real-time animated waveform that visually reacts to the music]`
+- [x] `[Joystick mode switching produces perceptibly different column behaviour for Bass, Full, and Treble]`
+- [x] `[The system runs continuously without freezing, dropping serial connection, or requiring a restart]`
 
 ## 5.2 Minimum Viable Version
 What is the smallest version of this project that still delivers the core experience?
