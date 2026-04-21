@@ -591,10 +591,10 @@ Press SELECT on Play/Pause → song plays from speakers → visualiser activates
 During playback: tilt joystick on ESP32 to change frequency mode (Bass / Full / Treble)
 Tilt LEFT from Player zone → return to Queue/Library → pick next song
 
-1. `[Step 1]`
-2. `[Step 2]`
-3. `[Step 3]`
-4. `[Step 4]`
+<img src="images/images/sonic-vault-full-ui.jpg" width="400">
+<img src="images/sonic-vault-genre-panel.jpg" width="400">
+<img src="images/sonic-vault-library-rows.jpg" width="400">
+<img src="images/sonic-vault-player-bar.jpg" width="400">
 
 ---
 
