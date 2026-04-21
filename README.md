@@ -52,7 +52,7 @@ By the final review, this README should clearly show:
 # 1. Team Identity
 
 ## 1.1 Studio / Group Name
-`[Enter your group name]`
+`[Waveform Studio]`
 
 ## 1.2 Team Members
 
@@ -65,7 +65,7 @@ By the final review, this README should clearly show:
 `Sonic Vault'
 
 ## 1.4 One-Line Pitch
-`[Describe your project in one sentence]`
+`[An interactive light installation that translates live sound into a real-time frequency visualiser on a dual LED matrix, controlled by a physical joystick and brought to life with breathing NeoPixel light.]`
 
 ## 1.5 Expanded Project Idea
 In 1–2 paragraphs, explain:
@@ -75,9 +75,8 @@ In 1–2 paragraphs, explain:
 - what technologies are involved.
 
 **Response:**  
-`Sonic Vault is an interactive installation that bridges the gap between invisible sound waves and tangible light. Using an ESP32 and a high-sensitivity microphone module, the system captures ambient audio and processes it into a frequency-based visual display on a dual-MAX7219 matrix.
-
-The experience is made playful through a physical joystick that allows users to toggle between three distinct "Atmospheric Modes": Pink (Bass), Red (Full Range), and Yellow (Treble). These modes don't just change colors; they change how the visualizer filters sound. The led matrix stays red but despite this it keeps changing display on the basis of the modes that are slected. It turns the act of listening into a sensory "flow" state, where every clap, whistle, or song becomes a temporary digital sculpture in a pulsing light-box.`
+`Sonic Vault is an interactive installation that bridges the gap between invisible sound waves and tangible light. Using an ESP32 and a MAX4466 high-sensitivity microphone module, the system captures ambient audio and processes it into a frequency-based visual display across a dual MAX7219 8×8 LED matrix (giving a combined 32×8 pixel canvas).
+The experience is made playful through a physical joystick that allows users to toggle between three distinct "Atmospheric Modes": Red (Bass), Orange (Full Range), and Yellow (Treble). These modes don't just change colours — they change how the visualiser filters sound. Low-frequency rumbles and is slow in Bass mode; high-frequency spikes and crackle fast in Treble mode; Full Range blends both. A NeoPixel strip of 10 LEDs breathes alongside the matrix, pulsing in the chosen mode colour. It turns the act of listening a song or even a clap, whistle, beat, or spoken word — into a temporary digital sculpture in a pulsing light-box.`
 
 ---
 
