@@ -776,13 +776,16 @@ What did you learn about:
 - iteration?
 
 **Response:**  
-`[Write here]`
+`•	Designing for play: The joystick mode switch is the right level of complexity — simple enough to discover in seconds, meaningful enough to keep exploring.
+•	Delight: The moment when a new user claps and sees the matrix explode in response is the core delight moment. It's immediate, personal, and slightly surprising every time.
+•	Clarity: The three mode colours on the NeoPixel strip (pink, red, yellow) provide clear feedback without needing a screen or label in most cases.
+•	Iteration: The biggest design lesson was to test with real users early. Several changes (mode label near joystick, colour system refinement, symmetric bars) came directly from the first 10-minute playtest session in Week 3. `
 
 ## 19.4 If You Had One More Week
 What would you improve next?
 
 **Response:**  
-`[Write here]`
+`We would implement true FFT on the ESP32 for accurate bass/mid/treble separation. We would build a proper laser-cut enclosure with diffused acrylic over the matrices. We would complete the Bluetooth bridge between the HTML companion UI and the ESP32 so mode switching from the browser is fully live. We would also add a small 0.96" OLED above the joystick showing the current mode name; the one piece of information that isn't immediately obvious to first-time users.`
 
 ---
 
