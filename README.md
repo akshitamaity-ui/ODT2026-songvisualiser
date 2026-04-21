@@ -102,7 +102,13 @@ Answer the following:
 - Why would someone want to try it again?
 
 **Response:**  
-`[Write here]`
+`[What is the experience? 
+A synesthetic environment where sound is seen and felt.
+An audio visualiser that maps live sound to light patterns across a 32×8 LED matrix. A joystick lets users shift between three frequency modes, changing how the device "listens" and responds.
+What do you want the player or participant to feel?
+We want them to feel a sense of flow — the satisfying, almost hypnotic state where you start making sounds deliberately just to see what the lights do next. We want them to feel amazed by seeing their favuorite songs be potrayed in a such an visual sensory experience.
+Why would someone want to try it again? 
+Because each sound input produces a unique, non-repeating light pattern. Switching modes feels like changing the "personality" of the machine. People naturally want to test it with different sounds — mostly songs, by adding mor songs int he made library.]`
 
 ## 2.3 Design Persona
 Complete the sentence below:
@@ -110,7 +116,7 @@ Complete the sentence below:
 > We are designing this project as if we are a small creative studio making a **[toy / game / playable object / interactive experience]** for **[children / teens / adults / classmates / exhibition visitors / mixed audience]**.
 
 **Response:**  
-`[Write here]`
+`[We are designing this project as if we are a small creative studio making a playable object / interactive experience for teens, adults, and exhibition visitors who are curious about how technology can make something invisible like sound into a visible and tangible experience.]`
 
 ---
 
@@ -121,7 +127,7 @@ List what inspired the project.
 
 | Source Type | Title / Link | What Inspired You |
 |---|---|---|
-| `[Toy / Board game / App / Video / Website / Object]` | `[Link or title]` | `[What did you learn or borrow?]` |
+| `[Installation / Object]` | `[Link or title]` | `[What did you learn or borrow?]` |
 | `[Toy / Board game / App / Video / Website / Object]` | `[Link or title]` | `[What did you learn or borrow?]` |
 | `[Toy / Board game / App / Video / Website / Object]` | `[Link or title]` | `[What did you learn or borrow?]` |
 
