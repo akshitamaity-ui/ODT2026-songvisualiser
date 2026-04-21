@@ -76,6 +76,7 @@ In 1–2 paragraphs, explain:
 
 **Response:**  
 `Sonic Vault is an interactive installation that bridges the gap between invisible sound waves and tangible light. Using an ESP32 and a MAX4466 high-sensitivity microphone module, the system captures ambient audio and processes it into a frequency-based visual display across a dual MAX7219 8×8 LED matrix (giving a combined 32×8 pixel canvas).
+
 The experience is made playful through a physical joystick that allows users to toggle between three distinct "Atmospheric Modes": Red (Bass), Orange (Full Range), and Yellow (Treble). These modes don't just change colours — they change how the visualiser filters sound. Low-frequency rumbles and is slow in Bass mode; high-frequency spikes and crackle fast in Treble mode; Full Range blends both. A NeoPixel strip of 10 LEDs breathes alongside the matrix, pulsing in the chosen mode colour. It turns the act of listening a song or even a clap, whistle, beat, or spoken word — into a temporary digital sculpture in a pulsing light-box.`
 
 ---
@@ -622,33 +623,45 @@ Examples:
 
 **Response:**  
 `[Foamboard instead of Acrylic/MDF: We chose foamboard for the "Vault" structure because it is incredibly lightweight and easy to manipulate using hand tools. Unlike MDF or acrylic, which require laser cutting, foamboard allowed us to prototype the internal angles of the vault in real-time to ensure the NeoPixel "breath" effect reflected off the walls perfectly.
+
 Buck Regulator instead of ESP32 Onboard Power: We added the XL4015 Buck Regulator because the 5V pin on the ESP32 cannot handle the current draw of two 8x8 matrices and a NeoPixel strip simultaneously. Without this, the system would suffer from brownouts (sudden resets) when the music gets loud and all LEDs light up.
+
 MAX4466 Microphone instead of Generic Sound Sensors: Generic sensors usually only provide a digital "high/low" threshold (detecting only "loud" or "quiet"). The MAX4466 provides a high-quality analog output with an adjustable gain, which is essential for our mode-filtering logic (separating Bass from Treble).
-MAX7219 Dot Matrix instead of NeoPixel Matrix: While NeoPixels are colorful, the MAX7219 modules provide a high-contrast, "lo-fi" aesthetic that matches our "Sonic Vault" theme. Technically, they are much easier to wire in a "daisy-chain" configuration over the distance of our foamboard structure.]`
+
+MAX7219 Dot Matrix instead of NeoPixel Matrix: While NeoPixels are colorful, the MAX7219 modules provide a high-contrast, "lo-fi" aesthetic that matches our "Sonic Vault" theme. Technically, they are much easier to wire in a "daisy-chain" configuration over the distance of our foamboard structure.
+
+Joystick Module instead of Buttons or Potentiometers:
+Buttons only allow for "on/off" states, and potentiometers (knobs) require a twisting motion that can be slow. The joystick provides instant, multi-directional agency. In a playful experience, tilting a stick feels more like "steering" the sound, which is more engaging for a user than simply clicking a button.]`
 
 ## 12.3 Items to Purchase Separately
 
 | Item | Why Needed | Purchase Link | Latest Safe Date to Procure | Status |
 |---|---|---|---|---|
-| `[Item]` | `[Reason]` | `[Link]` | `[Date]` | `[Pending / Ordered / Received]` |
-| `[Item]` | `[Reason]` | `[Link]` | `[Date]` | `[Pending / Ordered / Received]` |
+| `[MAX4466 Mic Module]` | `[Core audio input]` | `[]` | `[Week 1 Day 3]` | `[Received]` |
+| `[MAX7219 Matrix ×2]` | `[Core visual output]` | `[Link]` | `[Week 2 Day 5]` | `[Received]` |
+| `[XL4015 Buck Regulator]` | `[Stable power (post-brownout)]` | `[Link]` | `[Week 3]` | `[Received]` |
+| `[WS2812B NeoPixel (cut to 10)]` | `[light]` | `[Link]` | `[Week 1]` | `[Received]` |
+| `[KY-023 Analog Joystick Module]` | `[input componenet]` | `[Week 1]` | `[Date]` | `[Received]` |
+| `[multimeter]` | `[to check current]` | `[shop]` | `[Week 3]` | `[Received]` |
+
+
 
 ## 12.4 Budget Summary
 
 | Budget Item | Estimated Cost |
 |---|---:|
-| Electronics | `[Cost]` |
-| Mechanical parts | `[Cost]` |
-| Fabrication materials | `[Cost]` |
-| Purchased extras | `[Cost]` |
-| Contingency | `[Cost]` |
-| **Total** | `[Cost]` |
+| Electronics | `[900]` |
+| Mechanical parts | `[na]` |
+| Fabrication materials | `[na]` |
+| Purchased extras | `[400]` |
+| Contingency | `[150]` |
+| **Total** | `[1450]` |
 
 ## 12.5 Budget Reflection
 If your cost is too high, what can be simplified, removed, substituted, or shared?
 
 **Response:**  
-`[Write here]`
+`[The 150-LED NeoPixel strip that was abandoned represented wasted cost. The MAX7219 matrices are the same price and far more reliable. The XL4015 is the one component that should always be budgeted from day one on any project with multiple high-current outputs.]`
 
 ---
 
@@ -665,13 +678,13 @@ Include:
 - how documentation will be maintained.
 
 **Response:**  
-`[Write here]`
+`[Akshita led all fabrication model building and Interface software and backend connection to input components ( HTML/JS, Illustrator design), led hardware assembly and power design. Sirjan led all coding for the led display. Decisions were made jointly at the start of each session. If one track was blocked, the other member provided support. Documentation was updated by whoever completed a task. No major design change was made without agreement from both.]`
 
 ## 13.2 Task Breakdown
 
 | Task ID | Task | Owner | Estimated Hours | Deadline | Dependency | Status |
 |---|---|---|---:|---|---|---|
-| T1 | `[Finalize concept]` | `[Name]` | `2` | `[Date]` | `None` | `To Do` |
+| T1 | `[Finalize concept]` | `[Both]` | `5` | `[Date]` | `None` | `To Do` |
 | T2 | `[Complete BOM]` | `[Name]` | `1` | `[Date]` | `T1` | `To Do` |
 | T3 | `[Test electronics]` | `[Name]` | `2` | `[Date]` | `T1` | `To Do` |
 | T4 | `[Build structure]` | `[Name]` | `4` | `[Date]` | `T1` | `To Do` |
