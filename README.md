@@ -270,12 +270,10 @@ Add an early sketch of the full idea.
 
 **Insert image below:**  
 <img src="images/base structure_previous.jpg" width="400">
+<img src="images/ideation concept sketch 1.jpg.jpg" width="400">
+<img src="images/images/concept sketch2.jpg.jpg.jpg" width="400">
 
 
-Example:
-```md
-
-```
 
 ## 7.2 Labeled Build Sketch
 Add a sketch with labels showing:
@@ -291,6 +289,8 @@ Add a sketch with labels showing:
 <img src="images/electronic placement and wiring.jpg" width="400">
 The initial idea with individual led strips
 <img src="images/base structure_previous.jpg" width="400">
+
+
 ## 7.3 Approximate Dimensions
 
 | Dimension | Value |
@@ -391,6 +391,7 @@ Insert a hand-drawn or software-made circuit diagram.
 **Insert image below:**  
 <img src="images/connection_map.jpg" width="400">
 <img src="images/connections_pins.jpg" width="400">
+<img src="images/electronic placement and wiring.jpg" width="400">
 
 
 ## 9.4 Power Plan
@@ -873,8 +874,25 @@ Suggested images:
 - final build.
 
 Example:
-
+PROTOTYPE
 <img src="images/previous_structure.jpg" width="400">
+<img src="images/soldering neopixels_series.jpg" width="400">
+<img src="images/ideation concept sketch 1.jpg.jpg" width="400">
+<img src="images/images/concept sketch2.jpg.jpg.jpg" width="400">
+TESTING
+<img src="images/testing of acrylic sheet.jpg" width="400">
+<img src="images/display_testing-phase.jpg" width="400">
+
+CABLE MANAGEMENT 
+<img src="images/cable ducts.jpg" width="400">
+<img src="images/cable management 2.jpg" width="400">
+<img src="images/cable management .jpg" width="400">
+
+UI SCREENSHOT
+<img src="iimages/UI Interface 1.png" width="400">
+
+FINAL
+<img src="images/Led casing.jpg" width="400">
 <img src="images/user-interaction_board.jpg.jpg" width="400">
 <img src="images/final setup.jpg" width="400">
 
