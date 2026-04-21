@@ -318,7 +318,7 @@ Check all that apply.
 - [ ] Wheels
 - [ ] Sliders
 - [ ] Levers
-- [ ] Not applicable
+- [ yes ] Not applicable
 
 ## 8.2 Mechanical Description
 Describe the mechanism and what it is meant to do.
