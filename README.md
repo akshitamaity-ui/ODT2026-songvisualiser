@@ -103,12 +103,11 @@ Answer the following:
 
 **Response:**  
 `[What is the experience? 
-A synesthetic environment where sound is seen and felt.
-An audio visualiser that maps live sound to light patterns across a 32×8 LED matrix. A joystick lets users shift between three frequency modes, changing how the device "listens" and responds.
-What do you want the player or participant to feel?
-We want them to feel a sense of flow — the satisfying, almost hypnotic state where you start making sounds deliberately just to see what the lights do next. We want them to feel amazed by seeing their favuorite songs be potrayed in a such an visual sensory experience.
+What is the experience? A two-act interaction: first, navigate a game-like music interface with a physical joystick to find and play a track. Then, watch a live LED matrix visualiser react to that music in real time, with three selectable frequency modes changing the visual character of the response.
+What do you want the player to feel?
+In Phase 1: the satisfying weight of using a physical controller to navigate a slick digital interface — like operating a piece of real music equipment. In Phase 2: the delight of seeing something invisible (sound) become visible and immediate — the feeling that the room is listening.
 Why would someone want to try it again? 
-Because each sound input produces a unique, non-repeating light pattern. Switching modes feels like changing the "personality" of the machine. People naturally want to test it with different sounds — mostly songs, by adding mor songs int he made library.]`
+Different songs produce completely different light patterns. Different frequency modes make the same song look different. Players want to try their favourite track, then their friend's, then something with heavy bass to see what happens.]`
 
 ## 2.3 Design Persona
 Complete the sentence below:
@@ -130,12 +129,14 @@ List what inspired the project.
 | `[Installation / Object]` | `[Teenage Engineering OP-1 / Pocket Operators]` | `[The idea that sound tools can be playful, tactile, and visually expressive — not just functional]` |
 | `[App / Video]` | `[YouTube: LED audio spectrum visualisers with Arduino]` | `[Confirmed the technical feasibility and sparked the idea of using a matrix display instead of a strip]` |
 | `[Installation]` | `[TeamLab immersive digital art installations]` | `[The feeling that responding-to-sound installations create a "flow" state in participants]` |
+| `[Game UI]` | `[Plex, Spotify, retro media player interfaces]` | `[The idea of a track library as a tactile, navigable object rather than just a screen]` |
+
 
 ## 3.2 Original Twist
 What makes your project original?
 
 **Response:**  
-`[Most audio visualisers map amplitude to height (the volume) . Sonic Vault gives the user agency: by tilting a physical joystick, they change which frequency band the visualiser responds to — bass, full range, or treble. This means two people using the same device at the same time can have completely different visual experiences of the same sound. The breathing NeoPixel strip adds an ambient "mood light" layer that makes the installation feel alive even when silent.]`
+`[Most audio visualisers are passive: plug in music, watch lights respond. Sonic Vault makes the song selection itself a physical, tactile act using a real joystick and a purpose-built UI. The player earns the visual experience by navigating to it. Then audio visualisers normally map amplitude to height (the volume) . Sonic Vault gives the user agency: by tilting a physical joystick, they change which frequency band the visualiser responds to — bass, full range, or treble. This means two people using the same device at the same time can have completely different visual experiences of the same sound. The breathing NeoPixel strip adds an ambient "mood light" layer that makes the installation feel alive even when silent.]`
 
 ---
 
@@ -151,7 +152,7 @@ Examples:
 - move object → sensor detects → sound/light response → player reacts
 
 **Response:**  
-`[Select genre on ui song catalogue (which one can add and remove songs from) → Select song → play the song → microphone captures → ESP32 filters by mode → LED matrix displays waveform → NeoPixel breathes in mode colour → user tilts joystick to change mode → repeat]`
+`[Tilt joystick → navigate genre list → select genre → tilt joystick → navigate song list → press SELECT → song plays through speakers → Select song → play the song → microphone captures → ESP32 filters by mode → LED matrix displays waveform → NeoPixel breathes in mode colour → user tilts joystick to change mode → repeat]`
 
 ## 4.2 Intended Player / Audience
 
@@ -162,27 +163,29 @@ Examples:
 | Solo or multiplayer | `[Solo interaction, but works well as a shared display for groups]` |
 | Expected duration of one round | `[Continuous — no fixed round; engagement lasts as long as the user wants]` |
 | What should the player feel? | `[Curiosity, flow, delight, a sense of control over light through sound]` |
-| Is explanation required before use? | `[Minimal — the joystick and visual response are self-explanatory within seconds, also additionally there is manual as to how the joystick are meant to be used in the vault ]` |
+| Is explanation required before use? | `[Minimal — the joystick and visual response are self-explanatory within seconds, also additionally there is manual as to how the joystick are meant to be used in the vault. Plus, genre/library/queue layout is familiar from music apps; joystick navigation self-discovered within 30 seconds ]` |
 
 ## 4.3 Player Journey
 Describe exactly how a player will use the project.
 
-1. **Approach:** `[]`
-2. **Start:** `[How do they begin?]`
-3. **First Action:** `[What do they do first?]`
-4. **Main Interaction:** `[What keeps happening during use?]`
-5. **System Response:** `[How does the project respond?]`
-6. **Win / Lose / End Condition:** `[How does one round end?]`
-7. **Reset:** `[How does the next round begin?]`
+1. **Approach:** `[The player sees a glowing dark-themed screen — the Sonic Vault UI — and a physical joystick controller in front of it. The LED matrix pulses softly. The NeoPixel strip breathes amber.]`
+2. **Start:** `[They move joystick control around. No button press needed. The system is always on.]`
+3. **First Action:** `[They tilt up/down — the genre list scrolls. A yellow focus dot shows the active panel. They see: the differenet genres and when selected the songs that are stored in them.
+   They tilt right — focus shifts to the Song Library. Tracks filtered to the selected genre appear, showing title, artist, and duration.]`
+5. **Main Interaction:** `[They scroll up/down. They press the joystick button (SELECT) to play. The player bar lights up with the track name and a moving progress bar.The MAX4466 mic picks up the audio. The 32×8 LED matrix erupts — bar columns rise and fall in real time with the music. NeoPixels breathe in the respective colour of the frequency mode.]`
+6. **System Response:** `[The player tilts the joystick to cycle frequency modes. Red = Bass — slow, wide, deep bars. Orange = Full Range — responsive blend. Yellow = Treble — fast, jittery, electric.Tilt right to enter the Player zone — volume up/down, skip, pause — all without touching a keyboard or mouse.?]`
+7. **Win / Lose / End Condition:** `[Song ends; next queued track begins automatically, or the player navigates back to pick another. System is always ready.]`
+8. **Reset:** `[There is no end, the music willl always keep playin and the svreen will always keep shoing the visuas of the song unless stopped. besides this the microphone will pick up frequencies above its baseline and translate it onto the led matrix visuals.]`
 
 ## 4.4 Rules of Play
 If your project is a game, list the rules clearly.
 
-- `[Rule 1]`
-- `[Rule 2]`
-- `[Rule 3]`
-- `[Rule 4]`
-
+-Tilt left/right to move focus between Genre, Library, Queue, and Player panels.
+Tilt up/down to scroll within any panel.
+-Press the joystick button (SELECT) to play a song, enter a panel, or activate a player control.
+-In Player zone: tilt up/down on the Volume sub-target for volume; tilt up/down elsewhere for previous/next track.
+-During the visualiser: tilt (left/middle/right) joystick to cycle the frequency mode (Bass → Full → Treble).
+-Upload your own audio files using the "+ Upload" button for more options.
 ---
 
 # 5. Definition of Success
@@ -190,24 +193,24 @@ If your project is a game, list the rules clearly.
 ## 5.1 Definition of “Playable”
 Your project will be considered complete only if these conditions are met.
 
-- [ ] `[Condition 1]`
-- [ ] `[Condition 2]`
-- [ ] `[Condition 3]`
-- [ ] `[Condition 4]`
-- [ ] `[Condition 5]`
+- [ ] `[The joystick navigates genre list, song library, queue, and player controls via WebSerial without requiring keyboard or mouse]`
+- [ ] `[Selecting a song and pressing SELECT begins playback and the LED matrix visualiser pick up the frequency and get triggered]`
+- [ ] `[The LED matrix produces a real-time animated waveform that visually reacts to the music]`
+- [ ] `[Joystick mode switching produces perceptibly different column behaviour for Bass, Full, and Treble]`
+- [ ] `[The system runs continuously without freezing, dropping serial connection, or requiring a restart]`
 
 ## 5.2 Minimum Viable Version
 What is the smallest version of this project that still delivers the core experience?
 
 **Response:**  
-`[Write here]`
+`[A joystick that navigates the song list and triggers playback, with the LED matrix responding to the resulting audio. Genre filtering, queue, and volume control are valuable but not essential to the core loop.]`
 
 ## 5.3 Stretch Features
 What features are nice to have but not essential?
 
-- `[Stretch feature 1]`
-- `[Stretch feature 2]`
-- `[Stretch feature 3]`
+- `[2 ESP32 firmware handling both WebSerial UI navigation and ADC visualiser control simultaneously]`
+- `[Physical enclosure with diffused acrylic panels over the LED matrix]`
+- `[splitting the frequency via a mathematics equation for extracting treble and bass diagrams]`
 
 ---
 
@@ -216,17 +219,17 @@ What features are nice to have but not essential?
 ## 6.1 Project Type
 Check all that apply.
 
-- [ ] Electronics-based
+- [ yes ] Electronics-based
 - [ ] Mechanical
-- [ ] Sensor-based
+- [ yes ] Sensor-based
 - [ ] App-connected
 - [ ] Motorized
-- [ ] Sound-based
-- [ ] Light-based
-- [ ] Screen/UI-based
+- [ yes ] Sound-based
+- [ yes ] Light-based
+- [ yes ] Screen/UI-based
 - [ ] Fabricated structure
 - [ ] Game logic based
-- [ ] Installation / tabletop experience
+- [ yes ] Installation / tabletop experience
 - [ ] Other: `[Write here]`
 
 ## 6.2 High-Level System Description
@@ -240,16 +243,22 @@ Include:
 - app interaction if any.
 
 **Response:**  
-`[Write here]`
+`[Layer 1 — UI Interface (Browser + ESP32 via WebSerial):
+The Sonic Vault HTML/JS application runs in Google Chrome. The ESP32, running joystick firmware, connects via USB. When the joystick is tilted or pressed, the ESP32 sends a single-word command over serial (UP, DOWN, LEFT, RIGHT, SELECT) at 115200 baud. Chrome reads this via the Web Serial API and routes it through a focus-aware navigation system — identical to keyboard arrow key input. Four zones: Genre List, Song Library, Queue, and Player Controls. The user navigates these with the joystick to select and play tracks. Real audio files can be uploaded.
+Layer 2 — Audio Visualiser (ESP32 + hardware):
+Once a track plays from speakers, the MAX4466 microphone captures the audio (this is on an another ESP-32). The ESP32 reads the microphone ADC at ~20Hz, computes a rolling baseline to filter DC offset and noise, and derives three frequency proxies: low (slow-moving amplitude average → bass), full (blended amplitude), and high (fast-changing delta between samples → treble). Based on the active mode, one band value drives bar column heights across the dual MAX7219 32×8 matrix. Ten NeoPixels breathe in the mode colour via a sine-wave phase animation.
+The 2 joystick are the centre of both layers. During song selection it navigates the UI. For playback the second switches the visualiser's frequency mode. 
+Power: An XL4015 buck regulator provides a stable 5V rail for the ESP32, both MAX7219 modules, and the NeoPixel strip. ]`
 
 ## 6.3 Input / Output Map
 
 | System Part | Type | What It Does |
 |---|---|---|
-| `[Button / Sensor / Switch / App Input]` | Input | `[Describe]` |
-| `[ESP32 / Controller]` | Processing | `[Describe]` |
-| `[LED / Motor / Servo / Buzzer / Display]` | Output | `[Describe]` |
-| `[Mechanical Assembly]` | Physical Action | `[Describe]` |
+| `[Joystick Module (GPIO 35)]` | Input | `[Sends LEFT/RIGHT/UP/DOWN/SELECT to UI; cycles frequency mode on matrix]` |
+| `[MAX4466 Microphone (GPIO 34)]` | Input (ADC) | `[Captures audio from speakers; drives visualiser amplitude]` |
+| `[WebSerial (USB → Chrome)]` | Communication | `[Bridges ESP32 joystick commands to the HTML/JS UI]` |
+| `[\Dual MAX7219 Matrix (SPI, CS: GPIO 5 & 15)]` | Output (Light) | `[32×8 real-time waveform bar display — bars mirror upward and downward]` |
+| `[NeoPixel Strip — 10 LEDs (GPIO 4)]` | Output (Light) | `[Ambient breathing light in mode colour (Red / Orange / Yellow) indicating the frequency mode with respective colors]` |
 
 ---
 
@@ -281,11 +290,16 @@ Add a sketch with labels showing:
 
 | Dimension | Value |
 |---|---|
-| Length | `[Write here]` |
-| Width | `[Write here]` |
-| Height | `[Write here]` |
-| Estimated weight | `[Write here]` |
-
+| Length | `[15cm]` |
+| Width | `[34cm]` |
+| Height | `[36cm]` |
+| Estimated weight | `[600 gm]` |
+For external display (informational 3 fold board)
+| Dimension | Value |
+|---|---|
+| Length | `[na]` |
+| Width | `[3 x A3]` |
+| Height | `[36cm]` |
 ---
 
 # 8. Mechanical Planning
