@@ -220,17 +220,17 @@ What features are nice to have but not essential?
 ## 6.1 Project Type
 Check all that apply.
 
-- [ yes ] Electronics-based
+- [X] Electronics-based
 - [ ] Mechanical
-- [ yes ] Sensor-based
+- [X] Sensor-based
 - [ ] App-connected
 - [ ] Motorized
-- [ yes ] Sound-based
-- [ yes ] Light-based
-- [ yes ] Screen/UI-based
+- [X] Sound-based
+- [X] Light-based
+- [X] Screen/UI-based
 - [ ] Fabricated structure
 - [ ] Game logic based
-- [ yes ] Installation / tabletop experience
+- [X] Installation / tabletop experience
 - [ ] Other: `[Write here]`
 
 ## 6.2 High-Level System Description
@@ -269,7 +269,8 @@ Power: An XL4015 buck regulator provides a stable 5V rail for the ESP32, both MA
 Add an early sketch of the full idea.
 
 **Insert image below:**  
-`[Upload image and link here]`
+<img src="images/base structure_previous.jpg" width="400">
+
 
 Example:
 ```md
@@ -285,8 +286,11 @@ Add a sketch with labels showing:
 - output elements.
 
 **Insert image below:**  
-`[Upload image and link here]`
-
+<img src="images/structure_sketch.jpg.jpg" width="400">
+<img src="images/connection_map.jpg" width="400">
+<img src="images/electronic placement and wiring.jpg" width="400">
+The initial idea with individual led strips
+<img src="images/base structure_previous.jpg" width="400">
 ## 7.3 Approximate Dimensions
 
 | Dimension | Value |
@@ -319,7 +323,7 @@ Check all that apply.
 - [ ] Wheels
 - [ ] Sliders
 - [ ] Levers
-- [ yes ] Not applicable  no moving mechanical parts beyond the spring-return joystick axis.
+- [x] Not applicable  no moving mechanical parts beyond the spring-return joystick axis.
 
 ## 8.2 Mechanical Description
 Describe the mechanism and what it is meant to do.
@@ -385,7 +389,9 @@ Buck Regulator: Wall adapter input. 5V output → ESP32 VIN, matrix VCC, NeoPixe
 Insert a hand-drawn or software-made circuit diagram.
 
 **Insert image below:**  
-`[Upload image and link here]`
+<img src="images/connection_map.jpg" width="400">
+<img src="images/connections_pins.jpg" width="400">
+
 
 ## 9.4 Power Plan
 
@@ -463,8 +469,11 @@ Suggested sequence:
 - repeat or reset,
 - error handling.
 
-**Insert image below:**  
-`[Upload image and link here]`
+**Insert image below:** 
+For UI
+<img src="images/interface flowchart.jpgg" width="400">
+For Led Visual
+<img src="images/system_flowchart.jpg.jpeg" width="400">
 
 ## 10.4 Pseudocode
 
@@ -540,7 +549,7 @@ LOOP:
 # 11. MIT App Inventor Plan
 
 ## 11.1 Is an app part of this project?
-- [ yes  ] Yes but not coded through Mit app inventor. Its an HTML UI
+- [x] Yes but not coded through Mit app inventor. Its an HTML UI
 - [ ] No
 
 If yes, complete this section.
@@ -578,7 +587,8 @@ The design intent was to make song selection feel like a deliberate, physical ac
 Insert a sketch or screenshot of the app interface.
 
 **Insert image below:**  
-`[Upload image and link here]`
+<img src="images/UI Interface 1.png" width="400">
+<img src="images/UI interface 2.png" width="400">
 
 ## 11.5 App Screen Flow
 Browser opens → UI renders with 17-track demo library
@@ -595,6 +605,7 @@ Tilt LEFT from Player zone → return to Queue/Library → pick next song
 <img src="images/sonic-vault-genre-panel.jpg" width="400">
 <img src="images/sonic-vault-library-rows.jpg" width="400">
 <img src="images/sonic-vault-player-bar.jpg" width="400">
+
 
 ---
 
@@ -701,7 +712,7 @@ Include:
 | Concept and gameplay | [Both] | [Both] |
 | Electronics | [Both] | [-] |
 | Coding | [Sirjan] | [Akshita] |
-| UI | [Akshita] | [Sirjan] |
+| UI | [Akshita] | [-] |
 | Mechanical build | [Both] | [-] |
 | Testing | [Both] | [-] |
 | Documentation | [Both] | [-] |
@@ -862,11 +873,11 @@ Suggested images:
 - final build.
 
 Example:
-```md
 
+<img src="images/previous_structure.jpg" width="400">
+<img src="images/user-interaction_board.jpg.jpg" width="400">
+<img src="images/final setup.jpg" width="400">
 
-
-```
 
 ## 17.3 Version History
 
