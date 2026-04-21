@@ -750,10 +750,10 @@ Expected outcomes:
 
 | Week | Planned Goal | What Actually Happened | What Changed | Next Steps |
 |---|---|---|---|---|
-| Week 1 | `[Write here]` | `[Write here]` | `[Write here]` | `[Write here]` |
-| Week 2 | `[Write here]` | `[Write here]` | `[Write here]` | `[Write here]` |
-| Week 3 | `[Write here]` | `[Write here]` | `[Write here]` | `[Write here]` |
-| Week 4 | `[Write here]` | `[Write here]` | `[Write here]` | `[Write here]` |
+| Week 1 | `[Finalise concept; order and test components]` | `[Components ordered]` | `[Testing success]` | `[Work with arrived components till finalized]` |
+| Week 2 | `[Complete all components testing and integration]` | `[Mic-to-neopixel firmware done; However Neopixel strip (150 leds) malfunctioned. Abandoned 150-LED plan- failed due to signal integrity and power issues over long wire runs.]` | `[Decided to use LED matrices along with joystick and buck regulator.]` | `[Source the Matrices and buck; and redesign the power rail]` |
+| Week 3 | `[Full system integration and first playable version` | `[Full integration completed. All four subsystems (mic, matrix, joystick, NeoPixel) running together at 20Hz. UI wireframing started with LLM, moved to Illustrator for final design.]` | `[Added symmetric downward bars on display2 (mirrored effect) — this was not in the original plan but looked much better during testing.]` | `[Playtest, tune noise gate ]` |
+| Week 4 | `[Refine, playtest, complete UI and documentation]` | `[Noise threshold tuned to 20(was 8-too aggressive); neopixel codes were changed to be more visually appealing. UI companion built from illustrator mockup. ]` | `[Changing colour and other visuals for better user experience]` | `[-]` |
 
 ---
 
@@ -763,16 +763,19 @@ Expected outcomes:
 
 | Risk | Type | Likelihood | Impact | Mitigation Plan | Owner |
 |---|---|---|---|---|---|
-| `[Example: Bluetooth disconnects]` | `Technical` | `Medium` | `High` | `[Fallback interaction / simplify connection flow]` | `[Name]` |
-| `[Example: Structure breaks during play]` | `Mechanical` | `Medium` | `High` | `[Reinforce joints / change material]` | `[Name]` |
-| `[Risk]` | `[Technical / Material / Time / Gameplay]` | `[Low/Medium/High]` | `[Low/Medium/High]` | `[Plan]` | `[Name]` |
-| `[Risk]` | `[Type]` | `[Low/Medium/High]` | `[Low/Medium/High]` | `[Plan]` | `[Name]` |
+| `[NeoPixel strip flicker / wrong colours over long wire]` | `Technical` | `Medium` | `High` | `[Keep data wire short., simplify connectin flow, add regulator.]` | `[Both]` |
+| `[Mic picks up handling noise / table vibration]` | `technical` | `medium` | `low` | `[Software noise gate (NOISE_THRESHOLD). Adaptive rolling baseline. Dampen mic mount if needed]` | `[both]` |
+| `[Joystick mode change triggering accidentally]` | `[gameplay]` | `[low]` | `[medium]` | `[Only trigger on centre→edge transitions, not edge→edge or on hold.]` | `[Both]` |
+| `[Power instability under peak load]` | `[technical]` | `[medium]` | `[high]` | `[Power instability under peak load	Technical	Medium	High	Added XL4015 buck regulator rated 5A. Resolved completely]` | `[Both]`
 
 ## 15.2 Biggest Unknown Right Now
 What is the single biggest uncertainty in your project at this stage?
 
 **Response:**  
-`[Write here]`
+`[
+The biggest thing we're still unsure about is whether the ESP32 can keep up with everything happening at once. Even though the buck regulator fixed our power issues, we don't fully know yet if the board can handle running complex LED animations, reading the audio input, and responding to joystick controls — all at the same time, without any hiccups.
+The concern is that if the processor gets overloaded, the LED matrix might start flickering or lag slightly behind the actual sound. And if the joystick inputs — like adjusting volume or pausing — don't register instantly, the whole experience falls apart. The Sonic Vault is supposed to feel like one smooth, responsive instrument. The moment there's a noticeable delay between what you do and what you see or hear, it stops feeling immersive and just feels broken.
+So while the hardware is stable now, keeping everything perfectly in sync under full load is the one thing we haven't been able to fully test or guarantee yet.]`
 
 ---
 
@@ -782,20 +785,23 @@ What is the single biggest uncertainty in your project at this stage?
 
 | What Needs Testing | How You Will Test It | Success Condition |
 |---|---|---|
-| `[Bluetooth connection]` | `[Method]` | `[What counts as success?]` |
-| `[Mechanism movement]` | `[Method]` | `[What counts as success?]` |
-| `[Sensor behavior]` | `[Method]` | `[What counts as success?]` |
-| `[App communication]` | `[Method]` | `[What counts as success?]` |
+| `Joystick → UI navigation via WebSerial` | `Tilt all directions, press SELECT; observe focus zone movement on screen` | `Every command routes correctly; no double-triggers` |
+| `[Song selection → playback trigger]` | `[Navigate to a song, press SELECT]` | `[Track name appears in player bar; progress bar moves; audio plays from speakers]` |
+| `[Audio → matrix visualiser response]` | `[Play music; observe matrix columns]` | `[Columns rise with loud passages; fall during silence; perceptibly different for speech vs music]` |
+| `[Frequency mode switching]` | `[Tilt joystick during playback; observe matrix + NeoPixe]` | `[Visibly different behaviour in each mode; NeoPixel colour]` |
+| `[30-minute stability]` | `[Leave running with looped music]` | `[No freeze, brownout, or serial disconnect]` |
+| `[Noise gate in silence]` | `[Quiet room, 60 seconds]` | `[All 32 columns hold at zero]` |
+
 
 ## 16.2 Playtesting Plan
 
 | Question | How You Will Check |
 |---|---|
-| Do players understand what to do? | `[Method]` |
-| Is the interaction satisfying? | `[Method]` |
-| Do players want another turn? | `[Method]` |
-| Is the challenge balanced? | `[Method]` |
-| Is the response clear and immediate? | `[Method]` |
+| Does the player understand the UI without instructions? | `[Observe first 60 seconds — did they try the joystick unprompted?]` |
+| Does the two-phase experience feel connected? | `[Ask: "Did choosing the song and seeing the lights feel like one experience or two?"]` |
+| Is the visualiser response satisfying? | `[Ask: "Did it feel like the lights were responding to the music you chose?"]` |
+| Is mode switching discoverable? | `Did they find the joystick frequency mode without being told?` |
+| Do they want to try another song? | `[Observe — do they navigate back to the library?]` |
 
 ## 16.3 Testing and Debugging Log
 
@@ -828,7 +834,18 @@ Include:
 - revisions.
 
 **Response:**  
-`[Write here]`
+`[Cutting
+We built the enclosure out of foamboard, cutting it into panels to form the arched "Vault" shape, the curved back wall, side wings, and the raised base platform. Getting the arch opening right took some care; we scored the board and cut it slowly to keep the curve clean and symmetrical. The decorative sound wave graphics were printed, trimmed, and layered onto the panels.
+Assembly
+We put the structure together in sections, the back panel, two angled side wings, and the base box were joined to create the three-sided booth. The inner chamber sits recessed behind the arch, which gave the LED matrix display that framed, stage-like feel we were going for. We built the base platform separately and fitted it in last to house all the controls and components at a comfortable height.
+Fastening
+We used hot glue along the internal edges to bond the panels together, so the outside surfaces stayed clean and seam-free. The joystick, buttons, and control labels were mounted through cut-outs in the base and secured from underneath, keeping everything flush and intentional-looking on the surface.
+Wiring
+We ran all the wiring, ESP32, LED matrices, joystick, and power supply — internally through the base and behind the panels. To keep things tidy, we used tape throughout to bundle and hide the cables along the inner walls and the underside of the base. The buck regulator and power distribution components were tucked away inside the base cavity, completely out of sight.
+Finishing
+We covered the exterior panels with printed graphics — the Spectograph branding, sound wave illustrations, and our info posters. The inside of the chamber we lined in matte black to make the LED display pop and cut down on visual distraction. We added red waveform graphics along the inner walls to tie the whole look together, and printed clean labels for the control surface — "Sonic Vault," "UI," "Sono," and "Spectograph Library."
+Revisions
+The biggest physical revision came mid-project when we tracked down the power instability issue. We had to open up the base, re-route the wiring to fit the buck regulator in, and re-tape all the cable runs once the fix was in place. The joystick calibration also meant a lot of back-and-forth physically — we kept plugging in, testing the dead zone, adjusting, and testing again until the response felt natural.]`
 
 ## 17.2 Build Photos
 Add photos throughout the project.
