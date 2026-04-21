@@ -373,7 +373,12 @@ What changed after the CAD, animation, or simulation stage?
 Describe the main electrical connections.
 
 **Response:**  
-`[Write here]`
+`[SPI: CLK → GPIO 18, MOSI → GPIO 23. Matrix 1 CS → GPIO 5. Matrix 2 CS → GPIO 15.
+Microphone: OUT → GPIO 34. VCC → 3.3V. GND → GND.
+Joystick: VRX → GPIO 35. VCC → 3.3V. GND → GND.
+Joystick: VRX → GPIO 35. VRY → GPIO 34 VCC → 3.3V. GND → GND.
+NeoPixel: DIN → 330Ω → GPIO 4. VCC → 5V rail. GND → GND. 1000µF cap across VCC/GND near strip.
+Buck Regulator: Wall adapter input. 5V output → ESP32 VIN, matrix VCC, NeoPixel VCC]`
 
 ## 9.3 Circuit Diagram
 Insert a hand-drawn or software-made circuit diagram.
@@ -385,10 +390,10 @@ Insert a hand-drawn or software-made circuit diagram.
 
 | Question | Response |
 |---|---|
-| Power source | `[USB / battery / adapter / other]` |
-| Voltage required | `[Write here]` |
-| Current concerns | `[Write here]` |
-| Safety concerns | `[Write here]` |
+| Power source | `[XL4015 buck regulator (wall adapter input, 5V regulated output)]` |
+| Voltage required | `[5V for ESP32, MAX7219 modules, NeoPixel; 3.3V from ESP32  for MAX4466 and joysticks ]` |
+| Current concerns | `[NeoPixels peak ~600mA; matrices ~200mA; ESP32 ~240mA. Total ~1A. XL4015 rated 5A.]` |
+| Safety concerns | `[Inline fuse on buck regulator input. Keep NeoPixel cap close to strip.]` |
 
 ---
 
@@ -399,7 +404,12 @@ Insert a hand-drawn or software-made circuit diagram.
 | Tool / Platform | Purpose |
 |---|---|
 | `[MicroPython / Arduino / MIT App Inventor / CAD tool / other]` | `[Purpose]` |
-| `[Tool]` | `[Purpose]` |
+| `[MicroPython]` | `[IDF)Firmware on the ESP32]` |
+| `[max7219 MicroPython library]` | `[Driving MAX7219 matrices over SPI]` |
+| `[Web Serial API (Chrome)]` | `[Receiving joystick commands from ESP32 at 115200 baud]` |
+| `[Web Audio API (Chrome)]` | `[Playing uploaded audio files through the browser]` |
+| `[Adobe Illustrator]` | `[Full UI visual design (layout, colour system, typography)]` |
+
 
 ## 10.2 Software Logic
 Describe what the code must do.
@@ -414,7 +424,30 @@ Include:
 - reset behavior.
 
 **Response:**  
-`[Write here]`
+`[The project runs two software systems connected by the physical act of playing music.
+
+System A: Sonic Vault HTML/JS UI
+
+Startup: Render genre list, song library (17 demo tracks across 8 genres), empty queue, and player bar. Focus begins in GENRE_LIST zone. Status shows "NO CONTROLLER."
+
+WebSerial Connection: User clicks "Connect Controller." Chrome's Web Serial API prompts for the ESP32 serial port. A background read loop opens a TextDecoderStream and parses newline-delimited commands (UP / DOWN / LEFT / RIGHT / SELECT).
+
+Navigation System: Four focus zones — GENRE_LIST, SONG_LIST, QUEUE_LIST, PLAYER. A yellow dot indicator shows the active zone. UP/DOWN scroll within the active zone; LEFT/RIGHT shift focus between zones; SELECT plays the highlighted song, confirms the selected genre, or activates the highlighted player control. In the PLAYER zone, LEFT/RIGHT cycles through five sub-targets (Prev, Play/Pause, Stop, Next, Volume); UP/DOWN on the Volume sub-target adjusts level in 5% increments.
+
+Playback: Songs play via the Web Audio API if a file is uploaded; otherwise a simulated progress timer runs. Song end triggers the next queued track or next track in library depending on playback mode (Normal / Shuffle / Repeat / Loop Queue).
+Command Routing: Every incoming serial command routes through the same handler as keyboard arrow keys — identical code path, no duplication.
+System B: ESP32 Visualiser Firmware (MicroPython)
+Startup: Initialise SPI, two MAX7219 display objects (CS GPIO 5 and 15), ADC on GPIO 34 (mic) and GPIO 35 (joystick), NeoPixel on GPIO 4 (10 LEDs). Set baseline to 1900, mode to 2 (Full Range).
+Main Loop (20 Hz):
+
+Clear both matrix buffers.
+Read joystick ADC → determine region (left <1200 / centre / right >2800) → on centre→edge transition, increment or decrement mode (1–3).
+Advance breath phase → compute sine-wave brightness → write mode colour to all 10 NeoPixels.
+Read mic ADC → update rolling baseline (90/10 IIR) → compute amplitude and delta. Noise gate: if amplitude < 8, zero both.
+Update frequency proxies: low = low×0.95 + amplitude×0.05; full = amplitude×0.6 + low×0.4; high = high×0.3 + delta×0.7.
+Select band_val by mode.
+For each of 32 columns: compute target height from band_val + random jitter → animate current toward target → draw bar on display1 (upward) and display2 (downward, mirrored).
+Show both matrices. Sleep 50ms.]`
 
 ## 10.3 Code Flowchart
 Insert a flowchart showing your code logic.
@@ -435,7 +468,70 @@ Suggested sequence:
 ## 10.4 Pseudocode
 
 ```text
-[Write your pseudocode here]
+[=== UI COMMAND HANDLER ===
+
+ON serial command received (UP / DOWN / LEFT / RIGHT / SELECT):
+  if focus == PLAYER:
+    LEFT  → cycle playerSub left  (prev → pp → stop → next → vol)
+    RIGHT → cycle playerSub right
+    UP    → if playerSub==vol: volume+5  else: prevTrack()
+    DOWN  → if playerSub==vol: volume-5  else: nextTrack()
+    SELECT → activate playerSub (play/pause / stop / prev / next)
+  else:
+    UP    → scroll active list upward
+    DOWN  → scroll active list downward
+    LEFT  → shift focus left  (SONG→GENRE / QUEUE→SONG / PLAYER→QUEUE)
+    RIGHT → shift focus right (GENRE→SONG / SONG→QUEUE / QUEUE→PLAYER)
+    SELECT → play song / enter panel / play queue item
+
+
+=== ESP32 VISUALISER FIRMWARE ===
+
+INIT:
+  spi = SPI(CLK=18, MOSI=23, baud=80000)
+  display1 = MAX7219(spi, cs=5)
+  display2 = MAX7219(spi, cs=15)
+  mic  = ADC(pin=34, atten=11dB)
+  joy  = ADC(pin=35, atten=11dB)
+  leds = NeoPixel(pin=4, count=10)
+  baseline=1900 | mode=2 | breath_phase=0 | current[32]={0}
+
+LOOP:
+  clear display1, display2
+
+  joy_val = joy.read()
+  region  = LEFT if <1200 else RIGHT if >2800 else CENTRE
+  if prev_region==CENTRE and region==LEFT:  mode = clamp(mode+1, 1, 3)
+  if prev_region==CENTRE and region==RIGHT: mode = clamp(mode-1, 1, 3)
+  prev_region = region
+
+  breath_phase += 0.35
+  brightness = (sin(breath_phase)+1) / 2
+  colour = RED×brightness if mode==1 else ORANGE×brightness if mode==2 else YELLOW×brightness
+  fill all 10 LEDs → write
+
+  raw      = mic.read()
+  baseline = baseline×0.9 + raw×0.1
+  amp      = abs(raw - baseline)
+  delta    = abs(raw - prev_raw) | prev_raw = raw
+  if amp < 8: amp=0; delta=0
+
+  low  = low×0.95  + amp×0.05
+  full = amp×0.6   + low×0.4
+  high = high×0.3  + delta×0.7
+  band_val = low if mode==1 else full if mode==2 else high
+
+  for x in 0..31:
+    jitter   = random(-25,25) if mode==2 else random(-15,15)
+    target[x] = clamp(int((band_val+jitter)/10), 0, 8)
+    if amp==0: current[x] = max(0, current[x]-1)
+    elif current[x] < target[x]: current[x] += 1
+    elif current[x] > target[x]: current[x] -= 1
+    h = current[x]
+    for y in 0..h: display1.pixel(x, 7-y, ON)    // bars grow upward
+    for y in 0..h: display2.pixel(x, y,   ON)    // bars grow downward (mirrored)
+
+  display1.show() | display2.show() | sleep(50ms)]
 ```
 
 ---
@@ -443,7 +539,7 @@ Suggested sequence:
 # 11. MIT App Inventor Plan
 
 ## 11.1 Is an app part of this project?
-- [ ] Yes
+- [ yes  ] Yes but not coded through Mit app inventor. Its an HTML UI
 - [ ] No
 
 If yes, complete this section.
@@ -460,15 +556,22 @@ Examples:
 - displaying data.
 
 **Response:**  
-`[Write here]`
+`[The Sonic Vault UI is the first half of the experience. Without it, the player has no way to choose their music, and the visualiser has no audio to react to. It is a fully functional, joystick-navigable music library and player that runs in the browser.
+The design intent was to make song selection feel like a deliberate, physical act — not just a tap on a screen. Navigating a dark, game-controller-style interface creates a ritual around music choice. The player has to move through the vault to earn the visual experience.]`
 
 ## 11.3 App Features
 
 | Feature | Purpose |
 |---|---|
-| `[Bluetooth connect button]` | `[Purpose]` |
-| `[Score display]` | `[Purpose]` |
-| `[Control button / slider / label]` | `[Purpose]` |
+| `Genre panel (left) — 8 genres including Synthwave, Lo-Fi, Techno, Rock, Ambient, Jazz, Hip-Hop` | `[Filter the track library by style]` |
+| `[Song Library (centre) — full scrollable track list]` | `[Shows title, artist, genre, duration; yellow highlight follows joystick]` |
+| `[Queue panel (right)]` | `[Build and manage a playlist; Normal / Shuffle / Repeat / Loop Q modes]` |
+| `[Player bar (bottom) — Prev / Play / Stop / Next / Volume]` | `[Full playback control, all accessible from joystick in PLAYER focus zone]` |
+| `[CONNECT CONTROLLER button]` | `[Opens WebSerial port dialog; connects ESP32 joystick over USB]` |
+| `[Status indicator]` | `["NO CONTROLLER" → "CONTROLLER ACTIVE" with blinking dot on connection]` |
+| `[File upload (drag-and-drop or click)]` | `[Load real MP3 / WAV / OGG / FLAC files from device into the library]` |
+| `[Toast notifications]` | `[Brief on-screen feedback on every joystick command]` |
+| `[Keyboard mirror]` | `[All joystick commands are also keyboard-accessible (arrows + Enter)]` |
 
 ## 11.4 UI Mockup
 Insert a sketch or screenshot of the app interface.
@@ -477,6 +580,15 @@ Insert a sketch or screenshot of the app interface.
 `[Upload image and link here]`
 
 ## 11.5 App Screen Flow
+Browser opens → UI renders with 17-track demo library
+Player clicks "Connect Controller" → Chrome WebSerial dialog → ESP32 selected → status: "CONTROLLER ACTIVE"
+Focus starts in Genre List — tilt UP/DOWN to scroll genres
+Tilt RIGHT → focus moves to Song Library — tilt UP/DOWN to scroll tracks
+Tilt RIGHT again → Queue panel — add songs to playlist
+Tilt RIGHT again → Player Controls — LEFT/RIGHT cycles: Prev → Play/Pause → Stop → Next → Volume
+Press SELECT on Play/Pause → song plays from speakers → visualiser activates on hardware
+During playback: tilt joystick on ESP32 to change frequency mode (Bass / Full / Treble)
+Tilt LEFT from Player zone → return to Queue/Library → pick next song
 
 1. `[Step 1]`
 2. `[Step 2]`
@@ -491,9 +603,13 @@ Insert a sketch or screenshot of the app interface.
 
 | Item | Quantity | In Kit? | Need to Buy? | Estimated Cost | Material / Spec | Why This Choice? |
 |---|---:|---|---|---:|---|---|
-| `[ESP32]` | `1` | `Yes` | `No` | `0` | `[Spec]` | `[Reason]` |
-| `[Item]` | `[Qty]` | `[Yes/No]` | `[Yes/No]` | `[Cost]` | `[Spec]` | `[Reason]` |
-| `[Item]` | `[Qty]` | `[Yes/No]` | `[Yes/No]` | `[Cost]` | `[Spec]` | `[Reason]` |
+| `[ESP32]` | `1` | `Yes` | `yes` | `162` | `[Dual-core, ADC, SPI, USB serial]` | `[we needed 2 of them]` |
+| `[MAX4466 Electret Mic Amplifier]` | `[1]` | `[No]` | `[Yes]` | `[130]` | `[Adjustable gain, 3.3V, analog output]` | `[Onboard op-amp; clean signal without external amplifier circuit]` |
+| `[MAX7219 8×8 Matrix Module (4-in-1)]` | `[2]` | `[no]` | `[Yes]` | `[400 each]` | `[SPI-driven, built-in current regulation]` | `[Reliable SPI over wire; no timing fragility; pixel-art aesthetic fits dark UI theme]` |
+| `[KY-023 Analog Joystick Module]` | `[2]` | `[No]` | `[Yes]` | `[100 each]` | `[Dual-axis ADC, spring return]` | `[Tactile game-controller feel; single USB cable handles both UI and mode control]` |
+| `[WS2812B NeoPixel Strip — 10 LEDs]` | `[1]` | `[Yes]` | `[Yes]` | `[300]` | `[Individually addressable RGB]` | `[Breathing animation; short run avoids all signal integrity issues]` |
+| `[XL4015 Buck Regulator Module]` | `[Qty]` | `[No]` | `[Yes]` | `[280]` | `[Input 7–35V, output 5V, 5A rated]` | `[Added after brownouts under peak load — non-negotiable for stable operation]` |
+| `[foamboard]` | `[2 A1]` | `[No]` | `[Yes]` | `[0]` | `[na]` | `[its easy to manipulate and mold into structures]` |
 
 ## 12.2 Material Justification
 Explain why you selected your main materials and components.
@@ -505,7 +621,10 @@ Examples:
 - Why bearing instead of a plain shaft hole?
 
 **Response:**  
-`[Write here]`
+`[Foamboard instead of Acrylic/MDF: We chose foamboard for the "Vault" structure because it is incredibly lightweight and easy to manipulate using hand tools. Unlike MDF or acrylic, which require laser cutting, foamboard allowed us to prototype the internal angles of the vault in real-time to ensure the NeoPixel "breath" effect reflected off the walls perfectly.
+Buck Regulator instead of ESP32 Onboard Power: We added the XL4015 Buck Regulator because the 5V pin on the ESP32 cannot handle the current draw of two 8x8 matrices and a NeoPixel strip simultaneously. Without this, the system would suffer from brownouts (sudden resets) when the music gets loud and all LEDs light up.
+MAX4466 Microphone instead of Generic Sound Sensors: Generic sensors usually only provide a digital "high/low" threshold (detecting only "loud" or "quiet"). The MAX4466 provides a high-quality analog output with an adjustable gain, which is essential for our mode-filtering logic (separating Bass from Treble).
+MAX7219 Dot Matrix instead of NeoPixel Matrix: While NeoPixels are colorful, the MAX7219 modules provide a high-contrast, "lo-fi" aesthetic that matches our "Sonic Vault" theme. Technically, they are much easier to wire in a "daisy-chain" configuration over the distance of our foamboard structure.]`
 
 ## 12.3 Items to Purchase Separately
 
