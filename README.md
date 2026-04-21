@@ -318,7 +318,7 @@ Check all that apply.
 - [ ] Wheels
 - [ ] Sliders
 - [ ] Levers
-- [ yes ] Not applicable
+- [ yes ] Not applicable  no moving mechanical parts beyond the spring-return joystick axis.
 
 ## 8.2 Mechanical Description
 Describe the mechanism and what it is meant to do.
@@ -359,9 +359,15 @@ What changed after the CAD, animation, or simulation stage?
 
 | Component | Quantity | Purpose |
 |---|---:|---|
-| `[ESP32]` | `1` | `[Main controller]` |
-| `[Component]` | `[Qty]` | `[Purpose]` |
-| `[Component]` | `[Qty]` | `[Purpose]` |
+| `[ESP32]` | `2` | `[2 controller - one for the ui and another for visual part]` |
+| `MAX4466 Electret Mic Amplifier Module)` | `[1]` | `[Amplified audio capture from speakers]` |
+| `[MAX7219 8×8 LED Matrix Module (4-in-1)]` | `[2]` | `[32×8 pixel real-time waveform display]` |
+| `[KY-023 Analog Joystick Module]` | `[2]` | `[Navigation input for UI and frequency mode switching]` |
+| `[XL4015 Buck Regulator Module]` | `[1]` | `[Regulated 5V, 5A, for all components]` |
+| `[WS2812B NeoPixel Strip — 10 LEDs]` | `[1]` | `[Ambient mode-colour breathing light` |
+
+
+## 9.2 Wiring Plan
 
 ## 9.2 Wiring Plan
 Describe the main electrical connections.
