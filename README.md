@@ -127,15 +127,15 @@ List what inspired the project.
 
 | Source Type | Title / Link | What Inspired You |
 |---|---|---|
-| `[Installation / Object]` | `[Link or title]` | `[What did you learn or borrow?]` |
-| `[Toy / Board game / App / Video / Website / Object]` | `[Link or title]` | `[What did you learn or borrow?]` |
-| `[Toy / Board game / App / Video / Website / Object]` | `[Link or title]` | `[What did you learn or borrow?]` |
+| `[Installation / Object]` | `[Teenage Engineering OP-1 / Pocket Operators]` | `[The idea that sound tools can be playful, tactile, and visually expressive — not just functional]` |
+| `[App / Video]` | `[YouTube: LED audio spectrum visualisers with Arduino]` | `[Confirmed the technical feasibility and sparked the idea of using a matrix display instead of a strip]` |
+| `[Installation]` | `[TeamLab immersive digital art installations]` | `[The feeling that responding-to-sound installations create a "flow" state in participants]` |
 
 ## 3.2 Original Twist
 What makes your project original?
 
 **Response:**  
-`[Write here]`
+`[Most audio visualisers map amplitude to height (the volume) . Sonic Vault gives the user agency: by tilting a physical joystick, they change which frequency band the visualiser responds to — bass, full range, or treble. This means two people using the same device at the same time can have completely different visual experiences of the same sound. The breathing NeoPixel strip adds an ambient "mood light" layer that makes the installation feel alive even when silent.]`
 
 ---
 
@@ -151,23 +151,23 @@ Examples:
 - move object → sensor detects → sound/light response → player reacts
 
 **Response:**  
-`[Write here]`
+`[Select genre on ui song catalogue (which one can add and remove songs from) → Select song → play the song → microphone captures → ESP32 filters by mode → LED matrix displays waveform → NeoPixel breathes in mode colour → user tilts joystick to change mode → repeat]`
 
 ## 4.2 Intended Player / Audience
 
 | Question | Response |
 |---|---|
-| Who is this for? | `[Write here]` |
-| Age range | `[Write here]` |
-| Solo or multiplayer | `[Write here]` |
-| Expected duration of one round | `[Write here]` |
-| What should the player feel? | `[Write here]` |
-| Is explanation required before use? | `[Write here]` |
+| Who is this for? | `[Teens, adults, exhibition visitors, anyone curious about sound and light]` |
+| Age range | `[12 and above]` |
+| Solo or multiplayer | `[Solo interaction, but works well as a shared display for groups]` |
+| Expected duration of one round | `[Continuous — no fixed round; engagement lasts as long as the user wants]` |
+| What should the player feel? | `[Curiosity, flow, delight, a sense of control over light through sound]` |
+| Is explanation required before use? | `[Minimal — the joystick and visual response are self-explanatory within seconds, also additionally there is manual as to how the joystick are meant to be used in the vault ]` |
 
 ## 4.3 Player Journey
 Describe exactly how a player will use the project.
 
-1. **Approach:** `[How does the player first encounter it?]`
+1. **Approach:** `[]`
 2. **Start:** `[How do they begin?]`
 3. **First Action:** `[What do they do first?]`
 4. **Main Interaction:** `[What keeps happening during use?]`
