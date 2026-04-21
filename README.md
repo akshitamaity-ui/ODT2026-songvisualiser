@@ -684,26 +684,27 @@ Include:
 
 | Task ID | Task | Owner | Estimated Hours | Deadline | Dependency | Status |
 |---|---|---|---:|---|---|---|
-| T1 | `[Finalize concept]` | `[Both]` | `5` | `[Date]` | `None` | `To Do` |
-| T2 | `[Complete BOM]` | `[Name]` | `1` | `[Date]` | `T1` | `To Do` |
-| T3 | `[Test electronics]` | `[Name]` | `2` | `[Date]` | `T1` | `To Do` |
-| T4 | `[Build structure]` | `[Name]` | `4` | `[Date]` | `T1` | `To Do` |
-| T5 | `[Write control code]` | `[Name]` | `4` | `[Date]` | `T3` | `To Do` |
-| T6 | `[Integrate system]` | `[Name]` | `4` | `[Date]` | `T4, T5` | `To Do` |
-| T7 | `[Playtest]` | `[Name]` | `2` | `[Date]` | `T6` | `To Do` |
-| T8 | `[Refine and document]` | `[Name]` | `3` | `[Date]` | `T7` | `To Do` |
+| T1 | `[Finalize concept]` | `[Both]` | `5` | `[week 2 session 1]` | `None` | `done` |
+| T2 | `[Complete BOM]` | `[Both]` | `1` | `[week 2 session 1]` | `T1` | `done` |
+| T3 | `[Test electronics]` | `[Both]` | `2` | `[week 2 session 2]` | `T1, T2` | `done` |
+| T4 | `[Build structure]` | `[Akshita]` | `4` | `[week 3 session 1]` | `T1` | `done` |
+| T5 | `[Write main code]` | `[Sirjan]` | `10-12` | `[week 3 session 2]` | `T3` | `done` |
+| T6 | `[Write interface code]` | `[Akshita]` | `6-7` | `[week 3 session 2]` | `T1` | `done` |
+| T7 | `[Integrate system]` | `[Both]` | `4` | `[week 4 session 1]` | `T all` | `done` |
+| T8 | `[Playtest]` | `[both]` | `2` | `[week 4 session 2]` | `T all` | `done` |
+| T8 | `[Refine and document]` | `[both]` | `4` | `[week 4 session 2]` | `T7` | `done` |
 
-## 13.3 Responsibility Split
+## 113.3 Responsibility Split
 
 | Area | Main Owner | Support Owner |
 |---|---|---|
-| Concept and gameplay | `[Name]` | `[Name]` |
-| Electronics | `[Name]` | `[Name]` |
-| Coding | `[Name]` | `[Name]` |
-| App | `[Name]` | `[Name]` |
-| Mechanical build | `[Name]` | `[Name]` |
-| Testing | `[Name]` | `[Name]` |
-| Documentation | `[Name]` | `[Name]` |
+| Concept and gameplay | [Both] | [Both] |
+| Electronics | [Both] | [-] |
+| Coding | [Sirjan] | [Akshita] |
+| UI | [Akshita] | [Sirjan] |
+| Mechanical build | [Both] | [-] |
+| Testing | [Both] | [-] |
+| Documentation | [Both] | [-] |
 
 ---
 
@@ -713,11 +714,11 @@ Include:
 
 ### Week 1 — Plan and De-risk
 Expected outcomes:
-- [ ] Idea finalized
-- [ ] Core interaction decided
-- [ ] Sketches made
+- [x] Idea finalized
+- [x] Core interaction decided
+- [x] Sketches made
 - [ ] BOM completed
-- [ ] Purchase needs identified
+- [x] Purchase needs identified
 - [ ] Key uncertainty identified
 - [ ] Basic feasibility tested
 
@@ -725,25 +726,25 @@ Expected outcomes:
 Expected outcomes:
 - [ ] Electronics tests completed
 - [ ] CAD / structure planning completed
-- [ ] App UI started if needed
+- [x] App UI started if needed
 - [ ] Mechanical concept tested
 - [ ] Main subsystems partially working
 
 ### Week 3 — Integrate
 Expected outcomes:
-- [ ] Physical body built
+- [x] Physical body built
 - [ ] Electronics integrated
-- [ ] Code connected to hardware
+- [x] Code connected to hardware
 - [ ] App connected if required
-- [ ] First playable version exists
+- [x] First playable version exists
 
 ### Week 4 — Refine and Finish
 Expected outcomes:
-- [ ] Technical bugs reduced
-- [ ] Playtesting completed
-- [ ] Improvements made
-- [ ] Documentation completed
-- [ ] Final build ready
+- [x] Technical bugs reduced
+- [x] Playtesting completed
+- [x] Improvements made
+- [x] Documentation completed
+- [x] Final build ready
 
 ## 14.2 Weekly Update Log
 
@@ -851,9 +852,11 @@ Example:
 
 | Version | Date | What Changed | Why |
 |---|---|---|---|
-| `v1` | `[Date]` | `[Describe]` | `[Reason]` |
-| `v2` | `[Date]` | `[Describe]` | `[Reason]` |
-| `v3` | `[Date]` | `[Describe]` | `[Reason]` |
+| `v1` | `[week 1]` | `[Initial assembly of 19 and 15 NeoPixel strips in series; basic microphone code.]` | `[To test the scale of the "Sonic Vault" light output and audio reactivity logic.]` |
+| `v2` | `[week 2]` | `[Integrated Analog Joystick (GPIO 34/35/13) ]` | `[To add user navigation and solve power instability/brownouts caused by high LED current draw.]` |
+| `v3` | `[week 3]` | `[Pivoted from individual strips to a 32x8 LED Matrix; implemented zig-zag wiring logic and started using aa buck regulator that was better]` | `[The strips proved too physically unstable; the matrix offered a more reliable, high-density display for the spectrogram.]` |
+| `v4 | `[week 3]` | `[UI Update: Added dedicated controls for Volume, Play, and Pause modes.]` | `[To shift from a "passive" visualization to an interactive player experience with actual user agency.]` |
+| `v5 | `[week 3]` | `[Final aesthetic refinement of the dashboard and system-wide debugging.]` | `[To ensure seamless communication between the joystick interrupts, power regulator, and LED refresh rates.]` |
 
 ---
 
@@ -863,23 +866,25 @@ Example:
 Describe the final version of your project.
 
 **Response:**  
-`[Write here]`
+`[Sonic Vault v3.1 is a two-phase tabletop installation. A physical joystick connected via USB to a laptop running Chrome navigates a purpose-built dark-themed music library (Sonic Vault HTML/JS) — browsing genres, scrolling tracks, building a queue, and controlling playback entirely without keyboard or mouse. When a track plays, the audio from the speakers is captured by a MAX4466 microphone connected to an ESP32, which drives a 32×8 MAX7219 LED matrix with real-time animated bar columns mirrored symmetrically across two daisy-chained modules. A 10-LED NeoPixel strip breathes in the active mode colour. The joystick cycles between Red (Bass), Orange (Full Range), and Yellow (Treble) frequency modes. The components needign a high volatge supply run from an XL4015 buck regulator. The UI was designed in Adobe Illustrator and wireframed collaboratively with Claude.]`
 
 ## 18.2 What Works Well
-- `[Point 1]`
-- `[Point 2]`
-- `[Point 3]`
+- `The experience of choosing music with the joystick and watching it visualised creates genuine authorship over the light show.
+-WebSerial joystick navigation is reliable and snappy — latency between tilt and UI response is imperceptible.
+-The symmetric mirrored matrix display (bars growing outward from centre) is visually striking and was an accidental discovery from a display bug.
+-The three frequency modes produce genuinely different visual characters.
+-The Sonic Vault UI design stands on its own as a polished, functional software deliverable.
 
 ## 18.3 What Still Needs Improvement
-- `[Point 1]`
-- `[Point 2]`
-- `[Point 3]`
+- Frequency band separation uses IIR filters and sample delta — not true FFT. Accurate spectral analysis would improve Bass/Treble distinction.
+-The two phases currently require two firmware modes on the ESP32. A unified async firmware would make the experience fully seamless.
+-A proper laser-cut or 3D-printed enclosure would significantly improve visual quality.   `
 
 ## 18.4 What Changed From the Original Plan
 How did the project change from the initial idea?
 
 **Response:**  
-`[Write here]`
+`[The 150-LED NeoPixel strip was the largest departure. Hardware reality forced us away from it entirely — and the MAX7219 matrix approach turned out to suit the dark pixel-art aesthetic of the UI far better. The symmetric dual-matrix mirrored display was not planned; it came from a display axis bug and was kept. The UI grew from a rough navigation sketch into a fully functional, polished piece of software. The joystick's dual role was always intended; the hardware failures of Week 2 forced us to think more carefully about how to implement it cleanly.]`
 
 ---
 
@@ -891,7 +896,11 @@ What slowed you down?
 How well did you manage time, tasks, and responsibilities?
 
 **Response:**  
-`[Write here]`
+`[We found a good rhythm between the technical and the creative sides of the project. Splitting into "Logic" and "Shell" roles — one focused on code and filters, the other on fabrication and UI — turned out to be the right call. It meant neither side was waiting on the other, and the result showed: the joystick and the digital interface actually felt like one thing, not two separate pieces bolted together.
+What slowed us down?
+Power issues ate up way more time than we expected. The ESP32 kept resetting randomly, and for a while we couldn't pin down why. Eventually we traced it back to current spikes from the LED matrices — not an obvious culprit. Swapping in a buck regulator fixed it, but that meant re-doing a chunk of our wiring mid-project, which hurt. On top of that, getting the joystick dead zones right took more back-and-forth than anticipated. Too sensitive and you'd accidentally switch modes; too stiff and it felt unresponsive.
+How well did we manage time, tasks, and responsibilities?
+Pretty well, all things considered. The hardware setbacks in Week 2 did throw us off, but we made a conscious call to focus on getting the core "Sonic Vault" experience right rather than chasing stretch goals. That discipline paid off — we crossed the finish line with something polished and properly play-tested, not just functional. Forty-eight hours is tight, and we used them well.]`
 
 ## 19.2 Technical Reflection
 What did you learn about:
@@ -902,7 +911,11 @@ What did you learn about:
 - integration?
 
 **Response:**  
-`[Write here]`
+`[Technical Reflection
+
+Electronics: Power budgeting is not optional. Any project with NeoPixels or multiple driven displays needs a dedicated regulated supply from week one. The XL4015 was added reactively; it should have been planned.
+Coding: IIR filtering for frequency estimation is fast and elegant but has fundamental limits. A proper ESP32 FFT would be the right next step. The WebSerial API in Chrome is far more capable than expected — it makes the browser a fully viable hardware I/O target.
+Integration: Dual MAX7219 SPI daisy-chain with separate CS lines is the correct approach and works reliably. ADC inputs near long jumper wires on breadboard can introduce noise — perfboard or PCB would improve signal quality.]`
 
 ## 19.3 Design Reflection
 What did you learn about:
@@ -930,24 +943,24 @@ What would you improve next?
 # 20. Final Submission Checklist
 
 Before submission, confirm that:
-- [ ] Team details are complete
-- [ ] Project description is complete
-- [ ] Inspiration sources are included
-- [ ] Player journey is written
-- [ ] Sketches are added
-- [ ] BOM is complete
-- [ ] Purchase list is complete
-- [ ] Budget summary is complete
-- [ ] Mechanical planning is documented if applicable
-- [ ] App planning is documented if applicable
-- [ ] Code flowchart is added
-- [ ] Task breakdown is complete
-- [ ] Weekly logs are updated
-- [ ] Risk register is complete
-- [ ] Testing log is updated
-- [ ] Playtesting notes are included
-- [ ] Build photos are included
-- [ ] Final reflection is written
+- [x] Team details are complete
+- [x] Project description is complete
+- [x] Inspiration sources are included
+- [x] Player journey is written
+- [x] Sketches are added
+- [x] BOM is complete
+- [x] Purchase list is complete
+- [x] Budget summary is complete
+- [x] Mechanical planning is documented if applicable
+- [x] App planning is documented if applicable
+- [x] Code flowchart is added
+- [x] Task breakdown is complete
+- [x] Weekly logs are updated
+- [x] Risk register is complete
+- [x] Testing log is updated
+- [x] Playtesting notes are included
+- [x] Build photos are included
+- [x] Final reflection is written
 
 ---
 
