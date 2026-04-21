@@ -62,7 +62,7 @@ By the final review, this README should clearly show:
 | `Sirjan Chahal` | `[Electronics / Coding / App / Fabrication / Mechanics]` | `[Role]` | `[Write here]` |
 
 ## 1.3 Project Title
-`[Enter the title of your project]`
+`Sonic Vault'
 
 ## 1.4 One-Line Pitch
 `[Describe your project in one sentence]`
@@ -75,7 +75,9 @@ In 1–2 paragraphs, explain:
 - what technologies are involved.
 
 **Response:**  
-`[Write here]`
+`Sonic Vault is an interactive installation that bridges the gap between invisible sound waves and tangible light. Using an ESP32 and a high-sensitivity microphone module, the system captures ambient audio and processes it into a frequency-based visual display on a dual-MAX7219 matrix.
+
+The experience is made playful through a physical joystick that allows users to toggle between three distinct "Atmospheric Modes": Pink (Bass), Red (Full Range), and Yellow (Treble). These modes don't just change colors; they change how the visualizer filters sound. The led matrix stays red but despite this it keeps changing display on the basis of the modes that are slected. It turns the act of listening into a sensory "flow" state, where every clap, whistle, or song becomes a temporary digital sculpture in a pulsing light-box.`
 
 ---
 
